@@ -19,13 +19,6 @@ search.appendChild(form)
 
 //gallery markup
 const gallery = document.getElementsByClassName('gallery')[0]
-// const cardDiv = document.createElement('div')
-// const cardImgDiv = document.createElement('div')
-// const cardInfoDiv = document.createElement('div')
-// const cardImg = document.createElement('img')
-// const cardH3 = document.createElement('h3')
-// const cardP1 = document.createElement('p')
-// const cardP2 = document.createElement('p')
 const cardDiv = createElement('div', false, false, 'card')
 const cardImgDiv = createElement('div', false, false, 'card-img-container')
 const cardInfoDiv = createElement('div', false, false, 'card-info-container')
@@ -83,13 +76,21 @@ modalContDiv.appendChild(modalDiv)
 modalBtnDiv.appendChild(modalContBtn1)
 modalBtnDiv.appendChild(modalContBtn2)
 modalContDiv.appendChild(modalBtnDiv)
-
+modalContDiv.style.display = 'none'
 body.appendChild(modalContDiv)
 
-//helper function
+/** 
+* creates and returns a new element based on the passed in attributes
+* @param {string} element - the element to be created (ex: div, input, button, etc) (required)
+* @param {string} type - type attribute (optional)
+* @param {string} id - type attribute (optional
+* @param {string} className - className attribute (optional)
+* @param {string} text - innerHTML attribute (optional)
+* @return {element} - the new HTML element
+*/
 function createElement(element, type, id, className, text){
     const ele = document.createElement(element)
-    ele.type = type
+    if(type){ele.type = type}
     if(id){ele.id = id}
     if(className){ele.className = className}
     if(text){ele.innerHTML = text}
