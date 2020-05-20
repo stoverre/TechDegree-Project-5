@@ -1,8 +1,6 @@
-randomUserURL = 'https://randomuser.me/api/'
-
-fetch(randomUserURL)
-    .then(data => data.json())
-    .then(data => console.log(data.results[0].name.first))
+/**
+* @author Richard Stover
+*/
 
 //search container markup
 const search = document.getElementsByClassName('search-container')[0]
