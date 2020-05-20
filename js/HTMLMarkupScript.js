@@ -16,25 +16,7 @@ form.appendChild(input2)
 search.appendChild(form)
 
 //gallery markup
-const gallery = document.getElementsByClassName('gallery')[0]
-const cardDiv = createElement('div', false, false, 'card')
-const cardImgDiv = createElement('div', false, false, 'card-img-container')
-const cardInfoDiv = createElement('div', false, false, 'card-info-container')
-const cardImg = createElement('img', false, false, 'card-img')
-const cardH3 = createElement('h3', false, false, 'card-name cap', 'first last')
-const cardP1 = createElement('p', false, false, 'card-text', 'email')
-const cardP2 = createElement('p', false, false, 'card-text cap', 'city, state')
-
-cardImg.src = 'https://placehold.it/90x90'
-cardImg.alt = 'profile picture'
-
-cardImgDiv.appendChild(cardImg)
-cardInfoDiv.appendChild(cardH3)
-cardInfoDiv.appendChild(cardP1)
-cardInfoDiv.appendChild(cardP2)
-cardDiv.appendChild(cardImgDiv)
-cardDiv.appendChild(cardInfoDiv)
-gallery.appendChild(cardDiv)
+// newUserDiv()
 
 //modal markup
 //indents match the intended HTML structure of these new divs
@@ -93,4 +75,26 @@ function createElement(element, type, id, className, text){
     if(className){ele.className = className}
     if(text){ele.innerHTML = text}
     return ele
+}
+
+function newUserDiv(pic, name, email, location){
+    const gallery = document.getElementsByClassName('gallery')[0]
+    const cardDiv = createElement('div', false, false, 'card')
+    const cardImgDiv = createElement('div', false, false, 'card-img-container')
+    const cardInfoDiv = createElement('div', false, false, 'card-info-container')
+    const cardImg = createElement('img', false, false, 'card-img')
+    const cardH3 = createElement('h3', false, false, 'card-name cap', `${name.first} ${name.last}`)
+    const cardP1 = createElement('p', false, false, 'card-text', email)
+    const cardP2 = createElement('p', false, false, 'card-text cap', `${location.city} ${location.state}`)
+
+    cardImg.src = pic.large
+    cardImg.alt = 'profile picture'
+
+    cardImgDiv.appendChild(cardImg)
+    cardInfoDiv.appendChild(cardH3)
+    cardInfoDiv.appendChild(cardP1)
+    cardInfoDiv.appendChild(cardP2)
+    cardDiv.appendChild(cardImgDiv)
+    cardDiv.appendChild(cardInfoDiv)
+    gallery.appendChild(cardDiv)
 }
