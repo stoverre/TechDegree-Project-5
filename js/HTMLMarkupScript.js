@@ -15,10 +15,8 @@ form.appendChild(input1)
 form.appendChild(input2)
 search.appendChild(form)
 
-//modal markup
-
 /** 
-* creates and returns a new element based on the passed in attributes
+* Creates and returns a new element based on the passed in attributes
 * @param {string} element - the element to be created (ex: div, input, button, etc) (required)
 * @param {string} type - type attribute (optional)
 * @param {string} id - type attribute (optional
@@ -35,7 +33,11 @@ function createElement(element, type, id, className, text){
     return ele
 }
 
-//removes all user divs from the DOM to make way for a new list of users
+/** 
+* Removes all user divs from the DOM to make way for a new list of users
+* @param {} - none
+* @return {} - none
+*/
 function removeUserDivs(){
     let list = document.getElementsByClassName('card')
     const length = list.length
@@ -45,7 +47,12 @@ function removeUserDivs(){
     }
 }
 
-// function newUserDiv(pic, name, email, location, counter){
+/** 
+* Creates a new div for the passed in user and adds it to the DOM
+* @param {object} user - a JSON object that represents a user
+* @param {number} counter - an integer that represents the position of the user in the DOM
+* @return {} - none
+*/
 function newUserDiv(user, counter){
     const gallery = document.getElementsByClassName('gallery')[0]
     const cardDiv = createElement('div', false, false, 'card')
@@ -69,6 +76,11 @@ function newUserDiv(user, counter){
     gallery.appendChild(cardDiv)
 }
 
+/** 
+* Creates a new div for the clicked on user and overlays it on the DOM
+* @param {object} user - a JSON object that represents a user
+* @return {} - none
+*/
 function createModalDiv(user){
     const address = `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state} ${user.location.postcode}`
     //indents match the intended HTML structure of these new divs

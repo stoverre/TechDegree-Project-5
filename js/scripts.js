@@ -1,3 +1,7 @@
+/**
+* @author Richard Stover
+*/
+
 randomUserURL = 'https://randomuser.me/api/?nat=au,gb,us,nz&results=12'
 
 //make the returned array of users global and create an index to be added to each
@@ -17,14 +21,12 @@ fetch(randomUserURL)
         listUsers(allUsers)
     })
 
- /**
-    * @function validateInput - determines if the search input contains any invalid 
-    *                           characters. If input is valid then check against
-    *                           the list
-    * @param {} - none //note: uses the parent doesNameMatch() list argument
-    * @return {boolean} isNotValid- returns true if the input contains an invalid 
-    *                     character as defined in invalidChar[]
-    */
+/**
+* checks if the search input contains any invalid characters. 
+* If input is valid then update the users
+* @param {event} - passed in event object
+* @return {} - none
+*/
 function validateInput(event){
     const input = event.target.value
     const regex = /\d/
@@ -42,6 +44,11 @@ function validateInput(event){
     }
 }
 
+/** 
+* calls the html update functions to update the display list of users
+* @param {array} list - list of users to display
+* @return {} none
+*/
 function listUsers(list){
     //remove any current user divs from the DOM
     removeUserDivs()
