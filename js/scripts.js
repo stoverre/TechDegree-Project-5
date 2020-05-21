@@ -34,7 +34,8 @@ function validateInput(event){
         console.log('invalid input')
     }else {
         let searchList = allUsers
-                            .filter(user => user.name.first.includes(input) || user.name.last.includes(input))
+                            .filter(user => user.name.first.toLowerCase().includes(input.toLowerCase()) || 
+                                        user.name.last.toLowerCase().includes(input.toLowerCase()))
                             .map(user => user)
         listUsers(searchList)
         activeUsers = searchList
@@ -49,6 +50,7 @@ function listUsers(list){
         newUserDiv(list[i], i)
     }
 }
+
 document.addEventListener('click', event => {
     //if the user clicks on any element encased in a cardDiv (including a cardDiv)
     //pull the counter attribute from the related cardDiv
@@ -83,6 +85,5 @@ document.addEventListener('click', event => {
 })
 
 document.addEventListener('keyup', event => {
-    console.log(event.target.id)
     validateInput(event)
 })
