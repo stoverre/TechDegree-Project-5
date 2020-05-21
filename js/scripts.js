@@ -1,4 +1,4 @@
-randomUserURL = 'https://randomuser.me/api/?results=12'
+randomUserURL = 'https://randomuser.me/api/?nat=au,fr,gb,us,nz&results=12'
 
 //make the returned array of users global and create an index to be added to each
 //newly created div. When the div is clicked, the stored counter attribute can be
