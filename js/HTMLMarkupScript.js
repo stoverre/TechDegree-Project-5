@@ -58,9 +58,7 @@ function newUserDiv(pic, name, email, location, counter){
     gallery.appendChild(cardDiv)
 }
 
-function formatModalDiv(user){
-    console.log(user.dob.date)
-    console.log(user.dob.date.substring(0,10))
+function createModalDiv(user){
     const address = `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state} ${user.location.postcode}`
     //indents match the intended HTML structure of these new divs
     const body = gallery.parentElement

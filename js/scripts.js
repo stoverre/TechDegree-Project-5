@@ -22,11 +22,25 @@ fetch(randomUserURL)
     })
 
 document.addEventListener('click', event => {
+    
+    //if the user clicks on any element encased in a cardDiv (including a cardDiv)
+    //pull the counter attribute from the related cardDiv
+    //use that numeral as the index on the users[] and pass that user to createModalDiv
     if(event.target.parentElement.parentElement.className === 'card'){
         let index = parseInt(event.target.parentElement.parentElement.getAttribute('counter'))
-        formatModalDiv(users[index])
+        createModalDiv(users[index])
     }
     if(event.target.parentElement.className === 'card'){
-        const index = event.target.parentElement
+        let index = parseInt(event.target.parentElement.getAttribute('counter'))
+        createModalDiv(users[index])
+    }
+    if(event.target.className === 'card'){
+        let index = parseInt(event.target.getAttribute('counter'))
+        createModalDiv(users[index])
+    }
+    //delete the modal from the DOM if the close btn or encased element are clicked
+    if(event.target.className === 'modal-close-btn' ||
+        event.target.parentElement.className === 'modal-close-btn'){
+        document.body.removeChild(document.body.lastElementChild)
     }
 })
