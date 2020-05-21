@@ -9,8 +9,8 @@ const input1 = createElement('input', 'search', 'search-input', 'search-input')
 const input2 = createElement('input', 'submit', 'search-submit', 'search-submit')
 form.action = '#'
 form.method = 'get'
-input1.placeholder = 'Search...'
-input2.value = '&#x1F50D'
+input1.placeholder = 'Enter Name...'
+input2.value = 'Search'
 form.appendChild(input1)
 form.appendChild(input2)
 search.appendChild(form)
@@ -78,7 +78,7 @@ function createModalDiv(user){
     const modalP4 = createElement('p', false, false, 'modal-text', address)
     const modalP5 = createElement('p', false, false, 'modal-text', `Birthday: ${user.dob.date.substring(0,10)}`)
     const modalBtn = createElement('button', 'button', 'modal-close-btn', 
-                                'modal-close-btn', '<strong>X</strong>')
+                                'modal-close-btn', 'X')
     const modalContBtn1 = createElement('button', 'button', 'modal-prev', 'modal-prev btn', 'Prev')
     const modalContBtn2 = createElement('button', 'button', 'modal-next', 'modal-next btn', 'Next')
 
