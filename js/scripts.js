@@ -3,25 +3,52 @@ randomUserURL = 'https://randomuser.me/api/?nat=au,gb,us,nz&results=12'
 //make the returned array of users global and create an index to be added to each
 //newly created div. When the div is clicked, the stored counter attribute can be
 //used to quickly access the full user data in the array
-let users = []
-let counter = 0
+let allUsers = []
 let index;
 
 fetch(randomUserURL)
     .then(data => data.json())
     .then(data => {
-        users = data.results
-        users.forEach(user => {
-            const newDiv = newUserDiv(
-                            user.picture,
-                            user.name,
-                            user.email,
-                            user.location,
-                            counter)
-            counter += 1
-        })
+        allUsers = data.results
+        listUsers(allUsers)
     })
 
+ /**
+    * @function validateInput - determines if the search input contains any invalid 
+    *                           characters. If input is valid then check against
+    *                           the list
+    * @param {} - none //note: uses the parent doesNameMatch() list argument
+    * @return {boolean} isNotValid- returns true if the input contains an invalid 
+    *                     character as defined in invalidChar[]
+    */
+function validateInput(event){
+    const input = event.target.value
+    const regex = /\d/
+    //if the the input is not valid and we need to display a 
+    //message. Else check the input against the list
+    if (regex.test(input)){
+        console.log('invalid input')
+    }else {
+        let searchList = allUsers
+                            .filter(user => user.name.first.includes(input) || user.name.last.includes(input))
+                            .map(user => user)
+        listUsers(searchList)
+    }
+}
+
+function listUsers(list){
+    //remove any current user divs from the DOM
+    removeUserDivs()
+    //call newUserDiv for each user in the passed in list
+    for (let i=0; i<list.length; i++){
+        newUserDiv(
+            list[i].picture,
+            list[i].name,
+            list[i].email,
+            list[i].location,
+            i)
+    }
+}
 document.addEventListener('click', event => {
     
     //if the user clicks on any element encased in a cardDiv (including a cardDiv)
@@ -43,7 +70,7 @@ document.addEventListener('click', event => {
     if(event.target.className === 'modal-close-btn' ){
         document.body.removeChild(document.body.lastElementChild)
     }
-    // console.log(event.target)
+    //cycle through users
     if(event.target.className === 'modal-next btn' && index < users.length-1){
         document.body.removeChild(document.body.lastElementChild)
         index += 1
@@ -54,4 +81,9 @@ document.addEventListener('click', event => {
         index -= 1
         createModalDiv(users[index])
     }
+})
+
+document.addEventListener('keyup', event => {
+    console.log(event.target.id)
+    validateInput(event)
 })

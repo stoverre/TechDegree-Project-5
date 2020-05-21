@@ -35,6 +35,16 @@ function createElement(element, type, id, className, text){
     return ele
 }
 
+//removes all user divs from the DOM to make way for a new list of users
+function removeUserDivs(){
+    let list = document.getElementsByClassName('card')
+    const length = list.length
+    let galleryDiv = document.getElementById('gallery')
+    for(let i=0; i<length; i++){
+        galleryDiv.removeChild(galleryDiv.lastChild)
+    }
+}
+
 function newUserDiv(pic, name, email, location, counter){
     const gallery = document.getElementsByClassName('gallery')[0]
     const cardDiv = createElement('div', false, false, 'card')
