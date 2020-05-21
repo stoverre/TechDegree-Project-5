@@ -4,12 +4,16 @@ randomUserURL = 'https://randomuser.me/api/?nat=au,gb,us,nz&results=12'
 //newly created div. When the div is clicked, the stored counter attribute can be
 //used to quickly access the full user data in the array
 let allUsers = []
+let activeUsers = allUsers
 let index;
 
 fetch(randomUserURL)
     .then(data => data.json())
     .then(data => {
         allUsers = data.results
+        //initialize active users array to all users. activeUsers will be udpated
+        //later if a search is performed
+        activeUsers = allUsers
         listUsers(allUsers)
     })
 
@@ -33,6 +37,7 @@ function validateInput(event){
                             .filter(user => user.name.first.includes(input) || user.name.last.includes(input))
                             .map(user => user)
         listUsers(searchList)
+        activeUsers = searchList
     }
 }
 
@@ -41,45 +46,39 @@ function listUsers(list){
     removeUserDivs()
     //call newUserDiv for each user in the passed in list
     for (let i=0; i<list.length; i++){
-        newUserDiv(
-            list[i].picture,
-            list[i].name,
-            list[i].email,
-            list[i].location,
-            i)
+        newUserDiv(list[i], i)
     }
 }
 document.addEventListener('click', event => {
-    
     //if the user clicks on any element encased in a cardDiv (including a cardDiv)
     //pull the counter attribute from the related cardDiv
     //use that numeral as the index on the users[] and pass that user to createModalDiv
     if(event.target.parentElement.parentElement.className === 'card'){
         index = parseInt(event.target.parentElement.parentElement.getAttribute('counter'))
-        createModalDiv(users[index])
+        createModalDiv(activeUsers[index])
     }
     if(event.target.parentElement.className === 'card'){
         index = parseInt(event.target.parentElement.getAttribute('counter'))
-        createModalDiv(users[index])
+        createModalDiv(activeUsers[index])
     }
     if(event.target.className === 'card'){
         index = parseInt(event.target.getAttribute('counter'))
-        createModalDiv(users[index])
+        createModalDiv(activeUsers[index])
     }
     //delete the modal from the DOM if the close btn or encased element are clicked
     if(event.target.className === 'modal-close-btn' ){
         document.body.removeChild(document.body.lastElementChild)
     }
-    //cycle through users
-    if(event.target.className === 'modal-next btn' && index < users.length-1){
+    //cycle through activeUsers
+    if(event.target.className === 'modal-next btn' && index < activeUsers.length-1){
         document.body.removeChild(document.body.lastElementChild)
         index += 1
-        createModalDiv(users[index])
+        createModalDiv(activeUsers[index])
     } 
     if(event.target.className === 'modal-prev btn' && index > 0){
         document.body.removeChild(document.body.lastElementChild)
         index -= 1
-        createModalDiv(users[index])
+        createModalDiv(activeUsers[index])
     }
 })
 

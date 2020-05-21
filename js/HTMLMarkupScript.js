@@ -45,18 +45,19 @@ function removeUserDivs(){
     }
 }
 
-function newUserDiv(pic, name, email, location, counter){
+// function newUserDiv(pic, name, email, location, counter){
+function newUserDiv(user, counter){
     const gallery = document.getElementsByClassName('gallery')[0]
     const cardDiv = createElement('div', false, false, 'card')
     cardDiv.setAttribute("counter", counter)
     const cardImgDiv = createElement('div', false, false, 'card-img-container')
     const cardInfoDiv = createElement('div', false, false, 'card-info-container')
     const cardImg = createElement('img', false, false, 'card-img')
-    const cardH3 = createElement('h3', false, false, 'card-name cap', `${name.first} ${name.last}`)
-    const cardP1 = createElement('p', false, false, 'card-text', email)
-    const cardP2 = createElement('p', false, false, 'card-text cap', `${location.city} ${location.state}`)
+    const cardH3 = createElement('h3', false, false, 'card-name cap', `${user.name.first} ${user.name.last}`)
+    const cardP1 = createElement('p', false, false, 'card-text', user.email)
+    const cardP2 = createElement('p', false, false, 'card-text cap', `${user.location.city} ${user.location.state}`)
 
-    cardImg.src = pic.large
+    cardImg.src = user.picture.large
     cardImg.alt = 'profile picture'
 
     cardImgDiv.appendChild(cardImg)
