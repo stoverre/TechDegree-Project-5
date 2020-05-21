@@ -65,14 +65,17 @@ document.addEventListener('click', event => {
     if(event.target.parentElement.parentElement.className === 'card'){
         index = parseInt(event.target.parentElement.parentElement.getAttribute('counter'))
         createModalDiv(activeUsers[index])
+        event.target.parentElement.parentElement.style.borderColor = ''
     }
     if(event.target.parentElement.className === 'card'){
         index = parseInt(event.target.parentElement.getAttribute('counter'))
         createModalDiv(activeUsers[index])
+        event.target.parentElement.style.borderColor = ''
     }
     if(event.target.className === 'card'){
         index = parseInt(event.target.getAttribute('counter'))
         createModalDiv(activeUsers[index])
+        event.target.style.borderColor = ''
     }
     //delete the modal from the DOM if the close btn or encased element are clicked
     if(event.target.className === 'modal-close-btn' ){
@@ -93,4 +96,24 @@ document.addEventListener('click', event => {
 
 document.addEventListener('keyup', event => {
     validateInput(event)
+})
+
+document.getElementById('gallery').addEventListener('mouseover', event => {
+    if(event.target.parentElement.parentElement.className === 'card'){
+        event.target.parentElement.parentElement.style.borderColor = 'red'
+    }
+    if(event.target.parentElement.className === 'card'){
+        event.target.parentElement.style.borderColor = 'red'
+    }
+    if(event.target.className === 'card'){
+        event.target.style.borderColor = 'red'
+        event.target.style.borderStyle = 'double'
+
+    }
+})
+
+document.getElementById('gallery').addEventListener('mouseout', event => {
+    if(event.target.className === 'card'){
+        event.target.style.borderColor = ''
+    }
 })
