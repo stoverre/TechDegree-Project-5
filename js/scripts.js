@@ -33,7 +33,17 @@ function validateInput(event){
     //if the the input is not valid and we need to display a 
     //message. Else check the input against the list
     if (regex.test(input)){
-        console.log('invalid input')
+        removeUserDivs()
+        const gallery = document.getElementsByClassName('gallery')[0]
+    
+        html = 
+        `<div class="card">
+            <div class="card-info-container">
+                <h3 id="search-error" class="search-error">That is not a valid input</h3>
+            </div>
+        </div>`
+
+        gallery.innerHTML += html
     }else {
         let searchList = allUsers
                             .filter(user => user.name.first.toLowerCase().includes(input.toLowerCase()) || 
@@ -41,6 +51,19 @@ function validateInput(event){
                             .map(user => user)
         listUsers(searchList)
         activeUsers = searchList
+        //if no search results, display a message
+        if(activeUsers.length === 0){
+            const gallery = document.getElementsByClassName('gallery')[0]
+    
+            html = 
+            `<div class="card">
+                <div class="card-info-container">
+                    <h3 id="search-error" class="search-error">There are no users that match your search</h3>
+                </div>
+            </div>`
+    
+            gallery.innerHTML += html
+        }
     }
 }
 
@@ -77,7 +100,7 @@ document.addEventListener('click', event => {
         createModalDiv(activeUsers[index])
         event.target.style.borderColor = ''
     }
-    //delete the modal from the DOM if the close btn or encased element are clicked
+    //delete the modal from the DOM if the close btn is clicked
     if(event.target.className === 'modal-close-btn' ){
         document.body.removeChild(document.body.lastElementChild)
     }
