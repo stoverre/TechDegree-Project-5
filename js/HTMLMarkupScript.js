@@ -52,7 +52,7 @@ function newUserDiv(user, counter){
 */
 function createModalDiv(user){
     const address = `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state} ${user.location.postcode}`
-    const dob = `${user.dob.date.substring(5,7)}/${user.dob.date.substring(8,10)}/${user.dob.date.substring(0,5)}`
+    const dob = `${user.dob.date.substring(5,7)}/${user.dob.date.substring(8,10)}/${user.dob.date.substring(0,4)}`
     //indents match the intended HTML structure of these new divs
     const body = gallery.parentElement
     html = 
@@ -71,7 +71,6 @@ function createModalDiv(user){
             </div>
         </div>
 
-        // IMPORTANT: Below is only for exceeds tasks 
         <div class="modal-btn-container">
             <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
             <button type="button" id="modal-next" class="modal-next btn">Next</button>

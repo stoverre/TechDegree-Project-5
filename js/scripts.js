@@ -68,7 +68,7 @@ function validateInput(event){
 }
 
 /** 
-* calls the html update functions to update the display list of users
+* calls the html update functions to update the displayed list of users
 * @param {array} list - list of users to display
 * @return {} none
 */
@@ -86,19 +86,19 @@ document.addEventListener('click', event => {
     //pull the counter attribute from the related cardDiv
     //use that numeral as the index on the users[] and pass that user to createModalDiv
     if(event.target.parentElement.parentElement.className === 'card'){
+        event.target.parentElement.parentElement.style.borderColor = ''
         index = parseInt(event.target.parentElement.parentElement.getAttribute('counter'))
         createModalDiv(activeUsers[index])
-        event.target.parentElement.parentElement.style.borderColor = ''
     }
     if(event.target.parentElement.className === 'card'){
+        event.target.parentElement.style.borderColor = ''
         index = parseInt(event.target.parentElement.getAttribute('counter'))
         createModalDiv(activeUsers[index])
-        event.target.parentElement.style.borderColor = ''
     }
     if(event.target.className === 'card'){
+        event.target.style.borderColor = ''
         index = parseInt(event.target.getAttribute('counter'))
         createModalDiv(activeUsers[index])
-        event.target.style.borderColor = ''
     }
     //delete the modal from the DOM if the close btn is clicked
     if(event.target.className === 'modal-close-btn' ){
@@ -120,18 +120,20 @@ document.addEventListener('click', event => {
 document.addEventListener('keyup', event => {
     validateInput(event)
 })
-
+// document.addEventListener('mouseover', (event) => console.log(event.target))
 document.getElementById('gallery').addEventListener('mouseover', event => {
+    console.log(event.target)
     if(event.target.parentElement.parentElement.className === 'card'){
         event.target.parentElement.parentElement.style.borderColor = 'red'
+        event.target.parentElement.parentElement.style.borderStyle = 'double'
     }
     if(event.target.parentElement.className === 'card'){
         event.target.parentElement.style.borderColor = 'red'
+        event.target.parentElement.style.borderStyle = 'double'
     }
     if(event.target.className === 'card'){
         event.target.style.borderColor = 'red'
         event.target.style.borderStyle = 'double'
-
     }
 })
 
