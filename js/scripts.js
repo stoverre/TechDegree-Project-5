@@ -38,7 +38,7 @@ function validateInput(event){
     
         html = 
         `<div class="card">
-            <div class="card-info-container">
+            <div class="card-info-container" style='text-align:center'>
                 <h3 id="search-error" class="search-error">That is not a valid input</h3>
             </div>
         </div>`
@@ -57,7 +57,7 @@ function validateInput(event){
     
             html = 
             `<div class="card">
-                <div class="card-info-container">
+                <div class="card-info-container" style='text-align:center'>
                     <h3 id="search-error" class="search-error">There are no users that match your search</h3>
                 </div>
             </div>`
@@ -120,24 +120,23 @@ document.addEventListener('click', event => {
 document.addEventListener('keyup', event => {
     validateInput(event)
 })
-// document.addEventListener('mouseover', (event) => console.log(event.target))
-document.getElementById('gallery').addEventListener('mouseover', event => {
-    console.log(event.target)
-    if(event.target.parentElement.parentElement.className === 'card'){
-        event.target.parentElement.parentElement.style.borderColor = 'red'
-        event.target.parentElement.parentElement.style.borderStyle = 'double'
-    }
-    if(event.target.parentElement.className === 'card'){
-        event.target.parentElement.style.borderColor = 'red'
-        event.target.parentElement.style.borderStyle = 'double'
-    }
-    if(event.target.className === 'card'){
-        event.target.style.borderColor = 'red'
-        event.target.style.borderStyle = 'double'
+
+document.addEventListener('mouseover', event => {
+    if(event.target.className !== ''){
+        if(event.target.className === 'card'){
+            event.target.style.borderColor = 'red'
+            event.target.style.borderStyle = 'double'
+        }else if(event.target.parentElement.className === 'card'){
+            event.target.parentElement.style.borderColor = 'red'
+            event.target.parentElement.style.borderStyle = 'double'
+        }else if(event.target.parentElement.parentElement.className === 'card'){
+            event.target.parentElement.parentElement.style.borderColor = 'red'
+            event.target.parentElement.parentElement.style.borderStyle = 'double'
+        }
     }
 })
 
-document.getElementById('gallery').addEventListener('mouseout', event => {
+document.addEventListener('mouseout', event => {
     if(event.target.className === 'card'){
         event.target.style.borderColor = ''
     }

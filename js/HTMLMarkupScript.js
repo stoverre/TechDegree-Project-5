@@ -7,7 +7,7 @@ const search = document.getElementsByClassName('search-container')[0]
 let html = 
     `<form action="#" method="get">
         <input type="search" id="search-input" class="search-input" placeholder="Enter Name...">
-        <input type="submit" value="Search;" id="search-submit" class="search-submit">
+        <input type="submit" value="Search" id="search-submit" class="search-submit">
     </form>`
 search.innerHTML = html
 
