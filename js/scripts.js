@@ -137,7 +137,16 @@ document.addEventListener('mouseover', event => {
 })
 
 document.addEventListener('mouseout', event => {
-    if(event.target.className === 'card'){
-        event.target.style.borderColor = ''
+    if(event.target.className !== ''){
+        if(event.target.className === 'card'){
+            event.target.style.borderColor = ''
+            event.target.style.borderStyle = 'double'
+        }else if(event.target.parentElement.className === 'card'){
+            event.target.parentElement.style.borderColor = ''
+            event.target.parentElement.style.borderStyle = 'double'
+        }else if(event.target.parentElement.parentElement.className === 'card'){
+            event.target.parentElement.parentElement.style.borderColor = ''
+            event.target.parentElement.parentElement.style.borderStyle = 'double'
+        }
     }
 })
